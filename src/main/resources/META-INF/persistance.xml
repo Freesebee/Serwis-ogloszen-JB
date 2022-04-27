@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.example.backniznes.Account.AccountEntity">
+        <table name="account" schema="public" catalog="d1j7icf55e42mi"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1" insertable="false" updatable="false"/>
+            </id>
+            <basic name="login">
+                <column name="login"/>
+            </basic>
+            <basic name="password">
+                <column name="password" />
+            </basic>
+            <basic name="email">
+                <column name="email"/>
+            </basic>
+            <basic name="role">
+                <column name="role" nullable="false"/>
+            </basic>
+            <one-to-many name="adsById" mapped-by="accountByIdAccount" target-entity="com.example.backniznes.AdEntity"/>
+        </attributes>
+    </entity>
+    <entity class="com.example.backniznes.AdEntity">
+        <table name="ad" schema="public" catalog="d1j7icf55e42mi"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="title">
+                <column name="title" nullable="false"/>
+            </basic>
+            <basic name="content">
+                <column name="content" nullable="false"/>
+            </basic>
+            <basic name="idAccount">
+                <column name="id_account" precision="-1"/>
+            </basic>
+            <many-to-one name="accountByIdAccount" optional="true" target-entity="com.example.backniznes.Account.AccountEntity">
+                <join-column name="id_account" referenced-column-name="id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="com.example.backniznes.PersonalDataEntity">
+        <table name="personal_data" schema="public" catalog="d1j7icf55e42mi"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false"/>
+            </basic>
+            <basic name="surename">
+                <column name="surename" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
