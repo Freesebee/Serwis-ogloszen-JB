@@ -1,6 +1,7 @@
 package com.example.backniznes.Account;
 
-import com.example.backniznes.AdEntity;
+import com.example.backniznes.Ad.AdEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @Entity
-@Table(name = "account", schema = "public", catalog = "d1j7icf55e42mi")
+@Table(name = "account")
 public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -28,6 +29,7 @@ public class AccountEntity {
     @Basic
     @Column(name = "role", nullable = true, length = -1)
     private String role;
+    @JsonIgnore
     @OneToMany(mappedBy = "accountByIdAccount")
     private Collection<AdEntity> adsById;
 

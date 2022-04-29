@@ -20,10 +20,10 @@
             <basic name="role">
                 <column name="role" nullable="false"/>
             </basic>
-            <one-to-many name="adsById" mapped-by="accountByIdAccount" target-entity="com.example.backniznes.AdEntity"/>
+            <one-to-many name="adsById" mapped-by="accountByIdAccount" target-entity="com.example.backniznes.Ad.AdEntity"/>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.AdEntity">
+    <entity class="com.example.backniznes.Ad.AdEntity">
         <table name="ad" schema="public" catalog="d1j7icf55e42mi"/>
         <attributes>
             <id name="id">

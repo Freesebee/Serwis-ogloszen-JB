@@ -3,7 +3,7 @@ package com.example.backniznes;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "personal_data", schema = "public", catalog = "d1j7icf55e42mi")
+@Table(name = "personal_data")
 public class PersonalDataEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
