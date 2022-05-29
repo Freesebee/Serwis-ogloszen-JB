@@ -19,7 +19,8 @@ public class AdController {
         this.repository = repository;
     }
 
-    @GetMapping("/test")
+//    @GetMapping("/test")
+    @RequestMapping(method = RequestMethod.GET, value = "/test")
     public ResponseEntity<AdEntity> test() {
         AdEntity test = new AdEntity();
         test.setAccountByIdAccount(test.getAccountByIdAccount());
