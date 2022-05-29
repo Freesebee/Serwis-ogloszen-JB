@@ -29,6 +29,9 @@ public class AccountEntity {
     @Basic
     @Column(name = "role", nullable = true, length = -1)
     private String role;
+    @Basic
+    @Column(name = "nickname", nullable = true, length = -1)
+    private String nickname;
     @JsonIgnore
     @OneToMany(mappedBy = "accountByIdAccount")
     private Collection<AdEntity> adsById;

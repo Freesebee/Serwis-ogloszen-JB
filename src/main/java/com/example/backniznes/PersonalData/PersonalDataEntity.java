@@ -1,7 +1,12 @@
 package com.example.backniznes.PersonalData;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "personal_data")
 public class PersonalDataEntity {
@@ -15,28 +20,13 @@ public class PersonalDataEntity {
     @Basic
     @Column(name = "surename", nullable = true, length = -1)
     private String surename;
+    @Basic
+    @Column(name = "city", nullable = true, length = -1)
+    private String city;
+    @Basic
+    @Column(name = "street", nullable = true, length = -1)
+    private String street;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurename() {
-        return surename;
-    }
-
-    public void setSurename(String surename) {
-        this.surename = surename;
+    public PersonalDataEntity() {
     }
 }

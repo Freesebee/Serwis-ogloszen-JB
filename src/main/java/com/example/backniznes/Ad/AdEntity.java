@@ -22,6 +22,12 @@ public class AdEntity {
     @Basic
     @Column(name = "content", nullable = true, length = -1)
     private String content;
+    @Basic
+    @Column(name = "city", nullable = true, length = -1)
+    private String city;
+    @Basic
+    @Column(name = "street", nullable = true, length = -1)
+    private String street;
     @ManyToOne
     @JoinColumn(name = "id_account", referencedColumnName = "id", nullable = true)
     private AccountEntity accountByIdAccount;
