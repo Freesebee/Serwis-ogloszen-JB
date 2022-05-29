@@ -15,7 +15,7 @@ import java.util.Collection;
 public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id", nullable = true)
+    @Column(name = "id", nullable = false)
     private int id;
     @Basic
     @Column(name = "login", nullable = true, length = -1)
@@ -32,6 +32,9 @@ public class AccountEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "accountByIdAccount")
     private Collection<AdEntity> adsById;
+    @Basic
+    @Column(name = "id_personal_data_fk", nullable = true)
+    private Integer idPersonalDataFk;
 
     public AccountEntity(String login, String password, String email, String role) {
         this.login = login;

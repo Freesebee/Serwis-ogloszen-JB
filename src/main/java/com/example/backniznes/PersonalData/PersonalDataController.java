@@ -1,5 +1,7 @@
-package com.example.backniznes.Ad;
+package com.example.backniznes.PersonalData;
 
+import com.example.backniznes.Ad.AdEntity;
+import com.example.backniznes.Ad.AdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,32 +12,24 @@ import java.util.NoSuchElementException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/ad")
-public class AdController {
-    AdRepository repository;
+@RequestMapping("/personalData")
+public class PersonalDataController {
+    PersonalDataRepository repository;
 
     @Autowired
-    public AdController(AdRepository repository) {
+    public PersonalDataController(PersonalDataRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<AdEntity> test() {
-        AdEntity test = new AdEntity();
-        test.setAccountByIdAccount(test.getAccountByIdAccount());
-        repository.save(test);
-        return new ResponseEntity(test, HttpStatus.OK);
-    }
-
     @GetMapping("")
-    ResponseEntity<Collection<AdEntity>> getAll() {
+    ResponseEntity<Collection<PersonalDataEntity>> getAll() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    ResponseEntity<AdEntity> getById(@PathVariable int id) {
+    ResponseEntity<PersonalDataEntity> getById(@PathVariable int id) {
         try {
-            AdEntity found = repository.findById(id).orElseThrow();
+            PersonalDataEntity found = repository.findById(id).orElseThrow();
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity("Nie ma elementu z takim id", HttpStatus.NOT_FOUND);
@@ -43,7 +37,7 @@ public class AdController {
     }
 
     @PostMapping("")
-    ResponseEntity<AdEntity> add(@RequestBody AdEntity data) {
+    ResponseEntity<PersonalDataEntity> add(@RequestBody PersonalDataEntity data) {
         if (data.getId() != 0)
             data.setId(0);
         if (!repository.findAll().contains(data)) {
@@ -54,9 +48,9 @@ public class AdController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<AdEntity> delete(@PathVariable int id) {
+    ResponseEntity<PersonalDataEntity> delete(@PathVariable int id) {
         try {
-            AdEntity found = repository.findById(id).orElseThrow();
+            PersonalDataEntity found = repository.findById(id).orElseThrow();
             repository.deleteById(id);
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -65,7 +59,7 @@ public class AdController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<AdEntity> put(@RequestBody AdEntity data, @PathVariable int id) {
+    ResponseEntity<PersonalDataEntity> put(@RequestBody PersonalDataEntity data, @PathVariable int id) {
         data.setId(id);
         repository.save(data);
         return new ResponseEntity(data, HttpStatus.OK);

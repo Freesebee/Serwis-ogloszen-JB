@@ -1,4 +1,4 @@
-package com.example.backniznes;
+package com.example.backniznes.PersonalData;
 
 import javax.persistence.*;
 

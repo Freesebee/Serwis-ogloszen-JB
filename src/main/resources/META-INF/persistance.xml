@@ -43,7 +43,7 @@
             </many-to-one>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.PersonalDataEntity">
+    <entity class="com.example.backniznes.PersonalData.PersonalDataEntity">
         <table name="personal_data" schema="public" catalog="d1j7icf55e42mi"/>
         <attributes>
             <id name="id">
@@ -54,6 +54,29 @@
             </basic>
             <basic name="surename">
                 <column name="surename" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.example.backniznes.Account.AccountEntity">
+        <table name="account" schema="public" catalog="dalh4kujhg8l3l"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="login">
+                <column name="login" nullable="false"/>
+            </basic>
+            <basic name="password">
+                <column name="password" nullable="false"/>
+            </basic>
+            <basic name="email">
+                <column name="email" nullable="false"/>
+            </basic>
+            <basic name="role">
+                <column name="role" nullable="false"/>
+            </basic>
+            <basic name="idPersonalDataFk">
+                <column name="id_personal_data_fk" nullable="false" precision="-1"/>
             </basic>
         </attributes>
     </entity>
