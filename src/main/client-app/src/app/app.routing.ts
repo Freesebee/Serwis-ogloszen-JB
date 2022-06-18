@@ -15,7 +15,7 @@ const routes: Routes =[
     { path: 'home',             component: HomeComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'register',           component: SignupComponent },
-    { path: 'ogloszenie',          component: AdComponent },
+    { path: 'ogloszenia',          component: AdComponent },
     { path: 'add',          component: AddAdComponent },
     { path: 'moderator-panel',          component: ModeratorPanelComponent },
     { path: 'login',          component: LoginComponent },
