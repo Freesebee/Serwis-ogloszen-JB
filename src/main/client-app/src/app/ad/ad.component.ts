@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { take } from "rxjs";
+import { Router } from "@angular/router";
+import { take, throwError, timeout } from "rxjs";
 import IAd from "../interfaces/ad";
 import { AdService } from "../shared/services/ad.service";
 
@@ -14,12 +15,17 @@ export class AdComponent implements OnInit {
 
   public recentAds: IAd[];
 
-  constructor(private _adServide: AdService) {}
+  constructor(private _adServide: AdService, private _router: Router) {}
 
   ngOnInit() {
     this._adServide
       .GetAds()
-      .pipe(take(3))
+      .pipe(
+        timeout({
+          each: 3000,
+          with: () => throwError(() => new Error('AdService/GetAds request timed out')),
+        })
+      )
       .subscribe({
         next: (ads) => {
           this.recentAds = ads;

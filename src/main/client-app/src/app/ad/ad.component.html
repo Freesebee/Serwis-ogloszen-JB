@@ -16,8 +16,7 @@
         <div class="col px-0">
           <div class="row">
             <div class="col-lg-6">
-              <h1 class="display-3  text-white">Ogłoszenia użytkowników:
-              </h1>
+              <h1 class="display-3 text-white">Ogłoszenia użytkowników:</h1>
               <div class="btn-wrapper">
                 <a [routerLink]="['/add']" class="btn btn-info btn-icon mb-3 mb-sm-0">
                   <span class="btn-inner--icon"><i class="fa fa-bullhorn"></i></span>
@@ -29,7 +28,8 @@
         </div>
       </div>
       <div class="separator separator-bottom separator-skew">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
@@ -40,17 +40,23 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="row row-grid">
-            <div *ngIf="recentAds then recentAdsView else loadingAdsView"></div>
+            <div *ngIf="recentAds; then recentAdsView; else loadingAdsView"></div>
             <ng-template #recentAdsView>
-              <div [ngClass]="{'col-lg-4': true }" *ngFor="let ad of recentAds">
+              <div [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds" style="padding-bottom: 15px">
                 <div class="card card-lift--hover shadow border-0">
-                  <div class="card-body py-5">
+                  <div class="card-body py-5" style="white-space: nowrap">
                     <h6 class="text-primary text-uppercase">{{ ad.title }}</h6>
-                    <p class="description mt-3">{{ ad.content }}</p>
-                    <div *ngIf="ad.category">
-                      <span class="badge badge-pill badge-success">{{ ad.category.name }}</span>
+                    <p class="description mt-3" style="text-overflow: ellipsis; overflow: hidden">
+                      {{ ad.content }}
+                    </p>
+                    <div *ngIf="ad.categoryByIdCategory.name">
+                      <span class="badge badge-pill badge-success">{{
+                        ad.categoryByIdCategory.name
+                        }}</span>
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-primary mt-4">Przejdź</a>
+                    <button class="btn btn-primary mt-4" [routerLink]="[ad.id]">
+                      Przejdź
+                    </button>
                   </div>
                 </div>
               </div>

@@ -10,12 +10,14 @@ import { AdComponent } from './ad/ad.component';
 import { ModeratorPanelComponent } from './moderator_panel/moderator_panel.component';
 import { AddAdComponent } from './add_ad/add_ad.component';
 import { LoginComponent } from './login/login.component';
+import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'register',           component: SignupComponent },
     { path: 'ogloszenia',          component: AdComponent },
+    { path: 'ogloszenia/:id',          component: AdDetailsComponent },
     { path: 'add',          component: AddAdComponent },
     { path: 'moderator-panel',          component: ModeratorPanelComponent },
     { path: 'login',          component: LoginComponent },

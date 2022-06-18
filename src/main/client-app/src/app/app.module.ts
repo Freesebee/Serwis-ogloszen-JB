@@ -19,6 +19,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AdDetailsComponent
   ],
   imports: [
     BrowserModule,
