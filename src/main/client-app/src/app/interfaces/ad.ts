@@ -9,5 +9,5 @@ export default interface IAd extends IDatabaseObject {
   street: string | undefined;
   approval: boolean | undefined;
   accountByIdAccount: IAccount | undefined;
-  category: ICategory | undefined;
+  categoryByIdCategory: ICategory | undefined;
 }
