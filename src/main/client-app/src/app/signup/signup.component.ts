@@ -10,6 +10,10 @@ export class SignupComponent implements OnInit {
     focus;
     focus1;
     focus2;
+    focus3;
+    focus4;
+    focus5;
+    focus6;
     constructor() { }
 
     ngOnInit() {}

@@ -8,7 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
-import { LandingComponent } from './landing/landing.component';
+import { AdComponent } from './ad/ad.component';
+import { ModeratorPanelComponent } from './moderator_panel/moderator_panel.component';
+import { AddAdComponent } from './add_ad/add_ad.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -21,7 +23,9 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     SignupComponent,
-    LandingComponent,
+    AdComponent,
+    ModeratorPanelComponent,
+    AddAdComponent,
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
