@@ -80,4 +80,18 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="com.example.backniznes.Category.CategoryEntity">
+        <table name="category" schema="public" catalog="dalh4kujhg8l3l"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false"/>
+            </basic>
+            <basic name="description">
+                <column name="description" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
 </entity-mappings>

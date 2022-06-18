@@ -1,7 +1,6 @@
-package com.example.backniznes.Ad;
+package com.example.backniznes.Category;
 
 import com.example.backniznes.Log;
-import com.example.backniznes.PersonalData.PersonalDataController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,72 +11,72 @@ import java.util.NoSuchElementException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/ad")
-public class AdController {
-    AdDaoImpl dao;
+@RequestMapping("/category")
+public class CategoryController {
+    CategoryDaoImpl dao;
 
     @Autowired
-    public AdController(AdDaoImpl dao) {
+    public CategoryController(CategoryDaoImpl dao) {
         this.dao = dao;
     }
 
     @GetMapping("")
-    ResponseEntity<Collection<AdEntity>> getAll() {
-        Log.info(PersonalDataController.class.toString(),
-                "wszystkie ogłoszenia zostały wysłane");
+    ResponseEntity<Collection<CategoryEntity>> getAll() {
+        Log.info(CategoryController.class.toString(),
+                "wszystkie categorie zostały wysłane");
         return new ResponseEntity<>(dao.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    ResponseEntity<AdEntity> getById(@PathVariable int id) {
+    ResponseEntity<CategoryEntity> getById(@PathVariable int id) {
         try {
-            AdEntity found = dao.findById(id);
-            Log.info(PersonalDataController.class.toString(),
-                    "ogłoszenie o id: " + id + "zostało wysłane");
+            CategoryEntity found = dao.findById(id);
+            Log.info(CategoryController.class.toString(),
+                    "categoria o id: " + id + "została wysłana");
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            Log.warn(PersonalDataController.class.toString(),
+            Log.warn(CategoryController.class.toString(),
                     "Nie ma elementu z takim id");
             return new ResponseEntity("Nie ma elementu z takim id", HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("")
-    ResponseEntity<AdEntity> add(@RequestBody AdEntity data) {
+    ResponseEntity<CategoryEntity> add(@RequestBody CategoryEntity data) {
         if (data.getId() != 0)
             data.setId(0);
         if (!dao.findAll().contains(data)) {
             dao.save(data);
-            Log.info(PersonalDataController.class.toString(),
-                    "ogłoszenie o nazwie: " + data.getTitle() + "zostały zapisane");
+            Log.info(CategoryController.class.toString(),
+                    "dcategoria : " + data + "zostały wysłane");
             return new ResponseEntity<>(data, HttpStatus.CREATED);
         }
-        Log.warn(PersonalDataController.class.toString(),
+        Log.warn(CategoryController.class.toString(),
                 "Już istnieje taki element");
         return new ResponseEntity("Już istnieje taki element", HttpStatus.CONFLICT);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<AdEntity> delete(@PathVariable int id) {
+    ResponseEntity<CategoryEntity> delete(@PathVariable int id) {
         try {
-            AdEntity found = dao.findById(id);
+            CategoryEntity found = dao.findById(id);
             dao.deleteById(id);
-            Log.info(PersonalDataController.class.toString(),
-            "ogłoszenie o id: " + id + "zostało usunięte");
+            Log.info(CategoryController.class.toString(),
+                    "usunięto dane osobowe o id: " + id);
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            Log.warn(PersonalDataController.class.toString(),
-                    "Nie ma elementu z takim id");
+            Log.warn(CategoryController.class.toString(),
+                    "Już istnieje taki element");
             return new ResponseEntity("Nie ma elementu z takim id", HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<AdEntity> put(@RequestBody AdEntity data, @PathVariable int id) {
+    ResponseEntity<CategoryEntity> put(@RequestBody CategoryEntity data, @PathVariable int id) {
         data.setId(id);
         dao.save(data);
-        Log.info(PersonalDataController.class.toString(),
-                "ogłoszenie o id: " + id + "zostało zaktualiuzowane");
+        Log.info(CategoryController.class.toString(),
+                "zaktualizowano dane osobowe o id: " + id);
         return new ResponseEntity(data, HttpStatus.OK);
     }
 }
