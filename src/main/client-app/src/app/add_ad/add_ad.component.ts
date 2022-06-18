@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import ICategory from '../interfaces/category';
+import { CategoryService } from '../shared/services/category.service';
 
 @Component({
     selector: 'app-add_ad',
@@ -10,8 +12,14 @@ export class AddAdComponent implements OnInit {
   focus: any;
   focus1: any;
 
-  constructor() { }
+  public categories: ICategory[];
 
-  ngOnInit() {}
+  constructor(private _categoryService: CategoryService) { }
+
+  ngOnInit() {
+    this._categoryService.GetCategories().subscribe(categories => {
+      this.categories = categories;
+    })
+  }
 
 }
