@@ -29,4 +29,13 @@ public class PersonalDataEntity {
 
     public PersonalDataEntity() {
     }
+
+    @Override
+    public String toString() {
+        return  "id=" + id +
+                ", name='" + name + '\'' +
+                ", surename='" + surename + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + " ";
+    }
 }

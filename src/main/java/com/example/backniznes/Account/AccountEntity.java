@@ -57,4 +57,16 @@ public class AccountEntity {
     public AccountEntity() {
 
     }
+
+    @Override
+    public String toString() {
+        return  "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", adsById=" + adsById +
+                ", idPersonalDataFk=" + idPersonalDataFk + " ";
+    }
 }
