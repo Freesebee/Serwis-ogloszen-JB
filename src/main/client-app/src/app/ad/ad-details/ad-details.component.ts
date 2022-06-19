@@ -21,5 +21,4 @@ export class AdDetailsComponent implements OnInit {
       }) 
    });
   }
-
 }

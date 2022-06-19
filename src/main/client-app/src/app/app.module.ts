@@ -13,6 +13,7 @@ import { ModeratorPanelComponent } from './moderator_panel/moderator_panel.compo
 import { AddAdComponent } from './add_ad/add_ad.component';
 import { EditAdComponent } from './edit_ad/edit_ad.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -35,7 +36,8 @@ import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
     LoginComponent,
     LoadingSpinnerComponent,
     AdDetailsComponent,
-    EditAdComponent
+    EditAdComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

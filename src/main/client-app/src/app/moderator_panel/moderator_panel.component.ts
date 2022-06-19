@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from "rxjs";
-import IModeratorPanel from "../interfaces/moderator_panel";
-import { ModeratorPanelService } from "../shared/services/moderator_panel.service";
+import {take, throwError, timeout} from "rxjs";
+import IAd from "../interfaces/ad";
+import {AdService} from "../shared/services/ad.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-moderator_panel',
@@ -10,24 +11,31 @@ import { ModeratorPanelService } from "../shared/services/moderator_panel.servic
 })
 
 export class ModeratorPanelComponent implements OnInit {
-  focus: any;
-  focus1: any;
+    focus: any;
+    focus1: any;
 
-  public recentAds: IModeratorPanel[];
+    public recentAds: IAd[];
 
-  constructor(private _moderator_panelService: ModeratorPanelService) {}
+    constructor(private _adServide: AdService, private _router: Router) {}
 
-  ngOnInit() {
-        this._moderator_panelService
-          .GetAds()
-          .pipe(take(3))
-          .subscribe({
-            next: (ads) => {
-              this.recentAds = ads;
-            },
-            error: (er) => {
-              console.error(er);
-            },
-          });
-  }
+    ngOnInit() {
+        this._adServide
+            .GetAds()
+            .pipe(
+                timeout({
+                    each: 3000,
+                    with: () => throwError(() => new Error('AdService/GetAds request timed out')),
+                })
+            )
+            .subscribe({
+                next: (ads) => {
+                    this.recentAds = ads;
+                },
+                error: (er) => {
+                    console.error(er);
+                },
+            });
+    }
+
+
 }

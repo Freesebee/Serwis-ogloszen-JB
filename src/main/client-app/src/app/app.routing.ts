@@ -12,6 +12,7 @@ import { AddAdComponent } from './add_ad/add_ad.component';
 import { EditAdComponent } from './edit_ad/edit_ad.component';
 import { LoginComponent } from './login/login.component';
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes =[
     { path: 'add',          component: AddAdComponent },
     { path: 'edit/:id',          component: EditAdComponent },
     { path: 'moderator-panel',          component: ModeratorPanelComponent },
+    { path: 'kategorie',          component: CategoryComponent },
     { path: 'login',          component: LoginComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
