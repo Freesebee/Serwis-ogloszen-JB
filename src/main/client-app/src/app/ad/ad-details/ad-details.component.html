@@ -28,6 +28,7 @@
                     <ng-template #recentAdsView>
                         <div class="card card-nav-tabs">
                             <div class="card-header card-header-warning">
+                                <i onclick="history.back()" class="fa fa-arrow-left" aria-hidden="true"></i>
                                 Ogłoszenie użytkownika {{ adData.accountByIdAccount.nickname }}
                                 <span class="badge badge-pill badge-success" style="float: right">{{
                                     adData.categoryByIdCategory.name
@@ -36,7 +37,11 @@
                             <div class="card-body">
                                 <h4 class="card-title">{{ adData.title }}</h4>
                                 <p class="card-text">{{ adData.content }}</p>
-                                <a href="javascript:;" class="btn btn-primary">Dane kontaktowe</a>
+                                <a href="javascript:" class="btn btn-primary">Dane kontaktowe</a>
+                                <span style="float: right">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Usuń</a>
+                                </span>
                             </div>
                         </div>
                     </ng-template>
