@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import IAd from 'src/app/interfaces/ad';
 import { AdService } from 'src/app/shared/services/ad.service';
+import {throwError, timeout} from "rxjs";
 
 @Component({
     selector: 'app-edit_ad',
@@ -18,11 +19,22 @@ export class EditAdComponent implements OnInit {
   constructor(private _adService: AdService, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-      this._route.params.subscribe(params => {
-        this._adService.GetAd(+params['id']).subscribe(ad => { // (+) convert*s string 'id' to a number
-          this.adData = ad;
-        })
-     });
-    }
+      this._adService
+          .UpdateAd(this.adData)
+          .pipe(
+              timeout({
+                  each: 3000,
+                  with: () => throwError(() => new Error('AdService/GetAds request timed out')),
+              })
+          )
+          .subscribe({
+              next: (ads) => {
+                  this.adData = ads;
+              },
+              error: (er) => {
+                  console.error(er);
+              },
+          });
+  }
 
 }
