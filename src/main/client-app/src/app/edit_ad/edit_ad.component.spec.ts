@@ -4,7 +4,7 @@ import { EditAdComponent } from './edit_ad.component';
 
 describe('EditAdComponent', () => {
   let component: EditAdComponent;
-  let fixture: ComponentFixture<AddAdComponent>;
+  let fixture: ComponentFixture<EditAdComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
