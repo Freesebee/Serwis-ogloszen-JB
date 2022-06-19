@@ -19,6 +19,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import {JwtTokenInterceptor} from "./auth/services/interceptors/jwt.token.interceptor";
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {JwtTokenInterceptor} from "./auth/services/interceptors/jwt.token.interc
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingSpinnerComponent,
+    AdDetailsComponent
   ],
   imports: [
     BrowserModule,
