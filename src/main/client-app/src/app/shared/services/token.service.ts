@@ -1,7 +1,6 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {Injectable} from "@angular/core";
-import {Credentials} from "../../login/credentials";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,17 +15,17 @@ export class TokenService {
   static readonly TOKEN_STORAGE_KEY = 'token';
   constructor(private http: HttpClient) { }
 
-  public generateToken(request){
-    return this.http.post(API_URL + "authenticate", request,{responseType: 'text' as 'json'})
+  public generateToken(request) {
+    return this.http.post(API_URL + "authenticate", request, { responseType: 'text' as 'json' })
   }
 
-  public welcome(token){
+  public welcome(token) {
     let tokenStr = 'Bearer ' + token
-    const headers = new HttpHeaders().append("Authorization", tokenStr)
-    return this.http.get(API_URL + 'ad',{headers, responseType: 'text' as 'json'})
+    const headers = new HttpHeaders().append("Authentication", tokenStr)
+    return this.http.get(API_URL + 'ad', { headers, responseType: 'text' as 'json' })
   }
 
-  public saveToken(token){
+  public saveToken(token) {
     localStorage.setItem(TokenService.TOKEN_STORAGE_KEY, token);
   }
 
