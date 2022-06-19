@@ -18,7 +18,7 @@
             <div class="col-lg-6">
               <h1 class="display-3  text-white">Panel  moderatora</h1>
               <div class="btn-wrapper">
-                <a [routerLink]="['/profile']" class="btn btn-info btn-icon mb-3 mb-sm-0">
+                <a [routerLink]="['/user-profile']" class="btn btn-info btn-icon mb-3 mb-sm-0">
                   <span class="btn-inner--icon"><i class="fa fa-user"></i></span>
                   <span class="btn-inner--text">Profil</span>
                 </a>
@@ -40,36 +40,48 @@
   </div>
   <section class="section section-lg pt-lg-0 mt--200">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <div class="row row-grid">
-            <div *ngIf="recentAds; then recentAdsView; else loadingAdsView"></div>
-            <ng-template #recentAdsView>
-              <div [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds" style="padding-bottom: 15px">
-                <div class="card card-lift--hover shadow border-0">
-                  <div class="card-body py-5" style="white-space: nowrap">
-                    <h6 class="text-primary text-uppercase">{{ ad.title }}</h6>
-                    <p class="description mt-3" style="text-overflow: ellipsis; overflow: hidden">
-                      {{ ad.content }}
-                    </p>
-                    <div *ngIf="ad.categoryByIdCategory.name">
+      <div class="row justify-content-center mt--300">
+        <div class="col-lg-15">
+          <div class="card bg-gradient-secondary shadow">
+            <h4 class="card-header">Zarządzanie ogłoszeniami</h4>
+            <div class="card-body p-lg-5">
+              <div class="table-responsive">
+                <table class="table table-bordered border-4">
+                  <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tytuł</th>
+                    <th scope="col">Treść</th>
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Opcje</th>
+                  </tr>
+                  </thead>
+                  <div *ngIf="recentAds; then recentAdsView;"></div>
+                  <ng-template #recentAdsView>
+                    <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds">
+                    <tr>
+                      <th scope="row">{{ ad.id }}</th>
+                      <td>{{ ad.title }}</td>
+                      <td>{{ ad.content }}</td>
+                      <td *ngIf="ad.categoryByIdCategory.name">
                       <span class="badge badge-pill badge-success">{{
                         ad.categoryByIdCategory.name
                         }}</span>
-                    </div>
-                    <button class="btn btn-primary mt-4" [routerLink]="['ad.id']">
-                      Przejdź
-                    </button>
-                  </div>
-                </div>
+                      </td>
+                      <td>
+                        <a [routerLink]="['ad.id']" class="btn btn-sm btn-primary mr-4">Przejdź</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4">Usuń</a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
               </div>
-            </ng-template>
-            <ng-template #loadingAdsView>
-              <app-loading-spinner></app-loading-spinner>
-            </ng-template>
-          </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 </main>
