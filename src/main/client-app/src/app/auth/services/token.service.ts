@@ -22,7 +22,7 @@ export class TokenService {
 
   public welcome(token){
     let tokenStr = 'Bearer ' + token
-    const headers = new HttpHeaders().append("Authentication", tokenStr)
+    const headers = new HttpHeaders().append("Authorization", tokenStr)
     return this.http.get(API_URL + 'ad',{headers, responseType: 'text' as 'json'})
   }
 
