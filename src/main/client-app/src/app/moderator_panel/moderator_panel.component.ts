@@ -14,7 +14,7 @@ export class ModeratorPanelComponent implements OnInit {
     focus: any;
     focus1: any;
 
-    public recentAds: IAd[];
+    public pendingAds: IAd[];
 
     constructor(private _adServide: AdService, private _router: Router) {}
 
@@ -29,7 +29,7 @@ export class ModeratorPanelComponent implements OnInit {
             )
             .subscribe({
                 next: (ads) => {
-                    this.recentAds = ads;
+                    this.pendingAds = ads;
                 },
                 error: (er) => {
                     console.error(er);
