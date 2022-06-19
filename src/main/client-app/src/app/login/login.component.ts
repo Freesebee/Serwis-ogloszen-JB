@@ -1,16 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Credentials} from "./credentials";
+import {AuthService} from "../auth/services/auth.service";
+import {TokenService} from "../auth/services/token.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  focus;
-  focus1;
-  constructor() { }
+    focus;
+    focus1;
 
-  ngOnInit() {
-  }
+    credentials: Credentials = new Credentials('', '');
 
+    constructor(private tokenService: TokenService) {
+    }
+
+    ngOnInit() {}
+
+    public login(): void {
+        let credentialsAsJson = {
+            "userName": this.credentials.username,
+            "password": this.credentials.password
+        }
+        let response = this.tokenService.generateToken(credentialsAsJson);
+        response.subscribe(data=>{
+          this.tokenService.saveToken(data)
+          console.log(data);
+        })
+    }
 }
