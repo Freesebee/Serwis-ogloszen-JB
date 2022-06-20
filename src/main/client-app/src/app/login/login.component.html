@@ -15,13 +15,22 @@
         <div class="col-lg-5">
           <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
-              <form role="form">
+              <form #loginForm="ngForm" role="form">
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Login" type="text" (focus)="focus=true" (blur)="focus=false">
+                    <input class="form-control"
+                           placeholder="Login"
+                           type="text"
+                           (focus)="focus=true"
+                           (blur)="focus=false"
+                           required
+                           [(ngModel)]="credentials.username" #username="ngModel">
+                    <div [hidden]="username.valid || username.pristine" class="text-danger">
+                         Username is required
+                    </div>
                   </div>
                 </div>
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
@@ -29,11 +38,24 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Hasło" type="password" (focus)="focus1=true" (blur)="focus1=false">
+                    <input class="form-control"
+                           placeholder="Hasło"
+                           type="password"
+                           (focus)="focus1=true"
+                           (blur)="focus1=false"
+                           required
+                           [(ngModel)]="credentials.password"
+                           #password="ngModel">
+                    <div [hidden]="password.valid || password.pristine" class="text-danger">
+                         Password is required
+                    </div>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Zaloguj się</button>
+                  <button class="btn btn-primary my-4"
+                          (click)="login()"
+                          [disabled]="!loginForm.form.valid">
+                    Zaloguj się</button>
                 </div>
               </form>
             </div>

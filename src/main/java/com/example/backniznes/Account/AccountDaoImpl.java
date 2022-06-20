@@ -29,4 +29,11 @@ public class AccountDaoImpl implements AccountDao{
     public void deleteById(int id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public AccountEntity findByLogin(String login) {
+        return repository.findByLogin(login).orElseThrow();
+    }
+
+
 }

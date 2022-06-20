@@ -9,4 +9,5 @@ public interface AccountDao {
     public AccountEntity findById(int id);
     public void save(AccountEntity personalData);
     public void deleteById(int id);
+    public AccountEntity findByLogin(String login);
 }

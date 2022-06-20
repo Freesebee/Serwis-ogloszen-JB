@@ -16,7 +16,7 @@
         <div class="col px-0">
           <div class="row">
             <div class="col-lg-6">
-              <h1 class="display-3  text-white">Panel  moderatora</h1>
+              <h1 class="display-3  text-white">Panel moderatora</h1>
               <div class="btn-wrapper">
                 <a [routerLink]="['/user-profile']" class="btn btn-info btn-icon mb-3 mb-sm-0">
                   <span class="btn-inner--icon"><i class="fa fa-user"></i></span>
@@ -32,7 +32,8 @@
         </div>
       </div>
       <div class="separator separator-bottom separator-skew">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
@@ -45,39 +46,42 @@
           <div class="card bg-gradient-secondary shadow">
             <h4 class="card-header">Zarządzanie ogłoszeniami</h4>
             <div class="card-body p-lg-5">
-              <div class="table-responsive">
-                <table class="table table-bordered border-4">
-                  <thead class="table-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Tytuł</th>
-                    <th scope="col">Treść</th>
-                    <th scope="col">Kategoria</th>
-                    <th scope="col">Opcje</th>
-                  </tr>
-                  </thead>
-                  <div *ngIf="recentAds; then recentAdsView;"></div>
-                  <ng-template #recentAdsView>
+              <div *ngIf="pendingAds; then recentAdsView; else loadingAdsView"></div>
+              <ng-template #recentAdsView>
+                <div class="table-responsive">
+                  <table class="table table-bordered border-4">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tytuł</th>
+                        <th scope="col">Treść</th>
+                        <th scope="col">Kategoria</th>
+                        <th scope="col">Opcje</th>
+                      </tr>
+                    </thead>
                     <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds">
-                    <tr>
-                      <th scope="row">{{ ad.id }}</th>
-                      <td>{{ ad.title }}</td>
-                      <td>{{ ad.content }}</td>
-                      <td *ngIf="ad.categoryByIdCategory.name">
-                      <span class="badge badge-pill badge-success">{{
-                        ad.categoryByIdCategory.name
-                        }}</span>
-                      </td>
-                      <td>
-                        <a [routerLink]="['ad.id']" class="btn btn-sm btn-primary mr-4">Przejdź</a>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4">Usuń</a>
-                      </td>
-                    </tr>
+                      <tr>
+                        <th scope="row">{{ ad.id }}</th>
+                        <td>{{ ad.title }}</td>
+                        <td>{{ ad.content }}</td>
+                        <td *ngIf="ad.categoryByIdCategory.name">
+                          <span class="badge badge-pill badge-success">{{
+                            ad.categoryByIdCategory.name
+                            }}</span>
+                        </td>
+                        <td>
+                          <a [routerLink]="['ad.id']" class="btn btn-sm btn-primary mr-4">Przejdź</a>
+                          <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
+                          <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4">Usuń</a>
+                        </td>
+                      </tr>
                     </tbody>
-                  </ng-template>
-                </table>
-              </div>
+                  </table>
+                </div>
+              </ng-template>
+              <ng-template #loadingAdsView>
+                <app-loading-spinner></app-loading-spinner>
+              </ng-template>
             </div>
           </div>
         </div>

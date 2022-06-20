@@ -25,7 +25,7 @@
                   <p class="description d-none d-md-inline-block mb-0">Sprawdź ogłoszenia w twoim regionie wystawione przez innych użytkowników.</p>
                 </div>
               </a>
-              <a routerLinkActive="active" [routerLink]="['/add']" class="media d-flex align-items-center">
+              <a *ngIf="isUserLogged" routerLinkActive="active" [routerLink]="['/add']" class="media d-flex align-items-center">
                 <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
                   <i class="ni ni-palette"></i>
                 </div>
