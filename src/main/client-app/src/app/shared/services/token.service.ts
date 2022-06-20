@@ -32,6 +32,11 @@ export class TokenService {
   public getToken(): string {
     return localStorage.getItem(TokenService.TOKEN_STORAGE_KEY);
   }
+
+  public removeToken() {
+    localStorage.removeItem(TokenService.TOKEN_STORAGE_KEY);
+  }
+  
   // public getResponseHeaders(credentials: Credentials) {
   //   let loginUrl = API_URL + '/login';
   //   return this.http.post(loginUrl, credentials, httpOptions);

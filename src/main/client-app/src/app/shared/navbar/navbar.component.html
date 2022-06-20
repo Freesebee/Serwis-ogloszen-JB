@@ -45,13 +45,13 @@
           <div class="dropdown-menu">
             <a [routerLink]="['/moderator-panel']" class="dropdown-item">Panel moderatora</a>
             <a [routerLink]="['/user-profile']" class="dropdown-item">Profil</a>
-            <a [routerLink]="['/login']" class="dropdown-item">Wyloguj</a>
+            <a [routerLink]="['/login']" (click)="onSignOut()" class="dropdown-item">Wyloguj</a>
           </div>
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
         <li class="nav-item d-none d-lg-block ml-lg-4">
-          <a [routerLink]="['/login']" target="_blank" class="btn btn-neutral btn-icon">
+          <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
             <span class="btn-inner--icon">
               <i class="fa fa-sign-in mr-2"></i>
             </span>
