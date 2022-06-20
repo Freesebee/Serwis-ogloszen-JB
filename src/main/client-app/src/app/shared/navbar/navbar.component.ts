@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
             this.lastPoppedUrl = ev.url;
         });
 
-        this.isUserLogged = this.authGuard.canActivate();
+        // this.isUserLogged = this.authGuard.canActivate();
     }
 
     isHome() {
