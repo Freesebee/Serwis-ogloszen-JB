@@ -27,6 +27,9 @@ public class AdEntity {
     @Basic
     @Column(name = "street", nullable = true, length = -1)
     private String street;
+    @Basic
+    @Column(name = "approval")
+    private Boolean approval;
     @ManyToOne
     @JoinColumn(name = "id_account", referencedColumnName = "id", nullable = true)
     private AccountEntity accountByIdAccount;
@@ -41,12 +44,19 @@ public class AdEntity {
     public AdEntity() {
     }
 
-    public AdEntity(int id, String title, String content, String city, String street, AccountEntity accountByIdAccount) {
+    public AdEntity(int id,
+                    String title,
+                    String content,
+                    String city,
+                    String street,
+                    Boolean approval,
+                    AccountEntity accountByIdAccount) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.city = city;
         this.street = street;
+        this.approval = approval;
         this.accountByIdAccount = accountByIdAccount;
     }
 
@@ -54,6 +64,7 @@ public class AdEntity {
         this.id = ad.getId();
         this.title = ad.getTitle();
         this.content = ad.getContent();
+        this.approval = ad.getApproval();
         this.city = ad.getCity();
         this.street = ad.getStreet();
         this.accountByIdAccount = ad.getAccountByIdAccount();
@@ -69,6 +80,6 @@ public class AdEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, city, street, accountByIdAccount);
+        return Objects.hash(id, title, content, city, street, approval, accountByIdAccount);
     }
 }

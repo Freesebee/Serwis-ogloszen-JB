@@ -94,4 +94,33 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="com.example.backniznes.AdEntity">
+        <table name="ad" schema="public" catalog="dalh4kujhg8l3l"/>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+            </id>
+            <basic name="title">
+                <column name="title"/>
+            </basic>
+            <basic name="content">
+                <column name="content"/>
+            </basic>
+            <basic name="idAccount">
+                <column name="id_account"/>
+            </basic>
+            <basic name="city">
+                <column name="city"/>
+            </basic>
+            <basic name="street">
+                <column name="street"/>
+            </basic>
+            <basic name="approval">
+                <column name="approval"/>
+            </basic>
+            <basic name="idCategory">
+                <column name="id_category"/>
+            </basic>
+        </attributes>
+    </entity>
 </entity-mappings>
