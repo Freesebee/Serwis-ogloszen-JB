@@ -31,12 +31,25 @@ public class AccountEntity {
     @Basic
     @Column(name = "nickname", nullable = true, length = -1)
     private String nickname;
+
     @JsonIgnore
     @OneToMany(mappedBy = "accountByIdAccount")
     private Collection<AdEntity> adsById;
     @Basic
     @Column(name = "id_personal_data_fk", nullable = true)
     private Integer idPersonalDataFk;
+
+    private boolean enabled;
+    private boolean tokenExpired;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     public AccountEntity(String login, String password, String email, String role) {
         this.login = login;
