@@ -24,8 +24,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <div *ngIf="adData; then recentAdsView; else loadingAdView"></div>
-                    <ng-template #recentAdsView>
+                    <div *ngIf="adData; then adView; else loadingAdView"></div>
+                    <ng-template #adView>
                         <div class="card card-nav-tabs">
                             <div class="card-header card-header-warning">
                                 <i onclick="history.back()" class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -36,11 +36,12 @@
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">{{ adData.title }}</h4>
+                                <h5 class="card-title">{{ adData.city }} ul. {{ adData.street }}</h5>
                                 <p class="card-text">{{ adData.content }}</p>
-                                <a href="javascript:" class="btn btn-primary">Dane kontaktowe</a>
                                 <span style="float: right">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Usuń</a>
+                                <h5>Adres mail: {{ adData.accountByIdAccount.email }}</h5>
+                                <a *ngIf="canModifyAd" href="javascript:void(0)" class="btn btn-sm btn-info mr-4" (click)="onUpdateAd()">Edytuj</a>
+                                <a *ngIf="canModifyAd" href="javascript:void(0)" class="btn btn-sm btn-warning mr-4" (click)="onDeleteAd()">Usuń</a>
                                 </span>
                             </div>
                         </div>
