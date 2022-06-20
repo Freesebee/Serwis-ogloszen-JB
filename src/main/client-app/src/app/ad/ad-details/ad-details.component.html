@@ -40,8 +40,8 @@
                                 <p class="card-text">{{ adData.content }}</p>
                                 <span style="float: right">
                                 <h5>Adres mail: {{ adData.accountByIdAccount.email }}</h5>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Usuń</a>
+                                <a *ngIf="canModifyAd" href="javascript:void(0)" class="btn btn-sm btn-info mr-4" (click)="onUpdateAd()">Edytuj</a>
+                                <a *ngIf="canModifyAd" href="javascript:void(0)" class="btn btn-sm btn-warning mr-4" (click)="onDeleteAd()">Usuń</a>
                                 </span>
                             </div>
                         </div>
