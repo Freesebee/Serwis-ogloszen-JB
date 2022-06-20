@@ -22,10 +22,10 @@ export class EditAdComponent implements OnInit {
 
   public categories: ICategory[];
 
-  constructor(private _categoryService: CategoryService, private fb: FormBuilder, private adService: AdService,  private _route: ActivatedRoute, private router: Router) { }
+  constructor(private _categoryService: CategoryService, private fb: FormBuilder, private adService: AdService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    
+
 
     this._route.params.subscribe(params => {
       this.adService.GetAd(+params['id']).subscribe(ad => { // (+) convert*s string 'id' to a number
@@ -45,27 +45,19 @@ export class EditAdComponent implements OnInit {
 
     this.adService.GetAd
 
-    
+
   }
 
   onSubmit() {
     console.log(this.form.value) //TODO: Remove
+
     if (this.form.valid) {
-      const data: IAd = {
-        title: this.form.get('title').value,
-        content: this.form.get('content').value,
-        categoryByIdCategory: this.categories.find(c => c.id == this.form.get('categoryId').value),
-        city: 'Białystok',
-        street: 'Wiejska',
-        approval: false,
-        accountByIdAccount: undefined,
-        id: 0,
-        createdBy: undefined,
-        createdDate: undefined,
-        modifiedBy: undefined,
-        modifiedDate: undefined
-      }
-      this.adService.UpdateAd(data).subscribe(response => {
+      
+      this.adData.title = this.form.get('title').value;
+      this.adData.categoryByIdCategory = this.categories.find(c => c.id == this.form.get('categoryId').value);
+      this.adData.content = this.form.get('content').value;
+
+      this.adService.UpdateAd(this.adData).subscribe(response => {
         this.router.navigate(['/ogloszenia/', response.id])
       })
     }

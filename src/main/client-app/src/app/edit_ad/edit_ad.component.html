@@ -30,35 +30,41 @@
         <div class="col-lg-8">
           <div class="card bg-gradient-secondary shadow">
             <div class="card-body p-lg-5">
-              <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <h2 class="mb-1">Edytuj ogłoszenie</h2>
-                <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-notification-70"></i></span>
+              <div *ngIf="adData; then adView; else loadingAdView"></div>
+              <ng-template #adView>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <h2 class="mb-1">Edytuj ogłoszenie</h2>
+                  <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-notification-70"></i></span>
+                      </div>
+                      <input class="form-control" formControlName="title" placeholder="Temat" type="text"
+                        (focus)="focus=true" (blur)="focus=false">
                     </div>
-                    <input class="form-control" formControlName="title" placeholder="Temat" type="text" (focus)="focus=true"
-                      (blur)="focus=false">
                   </div>
-                </div>
-                <div class="form-group mb-4">
-                  <textarea class="form-control form-control-alternative" formControlName="content" name="name" rows="4" cols="80"
-                    placeholder="Treść ogłoszenia"></textarea>
-                </div>
-                <div class="form-group mb-4">
-                  <div id="selectpicker-single-component" class="tab-pane tab-example-result fade show active"
-                    role="tabpanel" aria-labelledby="selectpicker-single-component-tab">
-                    <select class="form-control" formControlName="categoryId" data-trigger="" name="choices-single-default"
-                      id="choices-single-default">
-                      <option disabled="" selected="">Kategoria</option>
-                      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-                    </select>
+                  <div class="form-group mb-4">
+                    <textarea class="form-control form-control-alternative" formControlName="content" name="name"
+                      rows="4" cols="80" placeholder="Treść ogłoszenia"></textarea>
                   </div>
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Wystaw</button>
-                </div>
-              </form>
+                  <div class="form-group mb-4">
+                    <div id="selectpicker-single-component" class="tab-pane tab-example-result fade show active"
+                      role="tabpanel" aria-labelledby="selectpicker-single-component-tab">
+                      <select class="form-control" formControlName="categoryId" data-trigger=""
+                        name="choices-single-default" id="choices-single-default">
+                        <option disabled="" selected="">Kategoria</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Wystaw</button>
+                  </div>
+                </form>
+              </ng-template>
+              <ng-template #loadingAdView>
+                <app-loading-spinner></app-loading-spinner>
+              </ng-template>
             </div>
           </div>
         </div>
