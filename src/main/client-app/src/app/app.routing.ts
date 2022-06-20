@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { AuthService } from './shared/services/auth.service';
 import { SignupComponent } from './signup/signup.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: EditAdComponent, canActivate: [AuthGuard] },
   { path: 'moderator-panel', component: ModeratorPanelComponent, canActivate: [AuthGuard] },
   { path: 'kategorie', component: CategoryComponent },
+  { path: 'add-category', component: AddCategoryComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
