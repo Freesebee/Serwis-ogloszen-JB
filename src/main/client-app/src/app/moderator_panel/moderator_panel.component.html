@@ -59,7 +59,7 @@
                         <th scope="col">Opcje</th>
                       </tr>
                     </thead>
-                    <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds">
+                    <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of pendingAds">
                       <tr>
                         <th scope="row">{{ ad.id }}</th>
                         <td>{{ ad.title }}</td>
