@@ -1,7 +1,7 @@
 package com.example.backniznes;
 
-import com.example.backniznes.Ad.AdDaoImpl;
-import com.example.backniznes.Ad.AdEntity;
+import com.example.backniznes.Infrastructure.DataAccessLayer.Impl.AdDaoImpl;
+import com.example.backniznes.Domain.Models.AdEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
