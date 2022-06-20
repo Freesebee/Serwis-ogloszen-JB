@@ -52,17 +52,15 @@
                   <table class="table table-bordered border-4">
                     <thead class="table-dark">
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Tytuł</th>
                         <th scope="col">Treść</th>
                         <th scope="col">Kategoria</th>
                         <th scope="col">Opcje</th>
                       </tr>
                     </thead>
-                    <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of recentAds">
+                    <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of pendingAds">
                       <tr>
-                        <th scope="row">{{ ad.id }}</th>
-                        <td>{{ ad.title }}</td>
+                        <th scope="row">{{ ad.title }}</th>
                         <td>{{ ad.content }}</td>
                         <td *ngIf="ad.categoryByIdCategory.name">
                           <span class="badge badge-pill badge-success">{{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import IAd from 'src/app/interfaces/ad';
 import { AdService } from 'src/app/shared/services/ad.service';
 
@@ -12,7 +12,7 @@ export class AdDetailsComponent implements OnInit {
 
   public adData: IAd;
 
-  constructor(private _adService: AdService, private _route: ActivatedRoute) { }
+  constructor(private _adService: AdService, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
     this._route.params.subscribe(params => {
@@ -20,5 +20,16 @@ export class AdDetailsComponent implements OnInit {
         this.adData = ad;
       }) 
    });
+
+  }
+  deleteAd(): void {
+    this._adService.DeleteAd(this.adData.id)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this._router.navigate(['/ogloszenia']);
+          },
+          error: (e) => console.error(e)
+        });
   }
 }

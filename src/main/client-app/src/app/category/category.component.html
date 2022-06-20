@@ -36,7 +36,6 @@
                   <caption><a href="javascript:void(0)" class="btn btn-success">Dodaj</a></caption>
                   <thead class="table-dark">
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nazwa</th>
                     <th scope="col">Opis</th>
                     <th scope="col">Opcje</th>
@@ -46,8 +45,7 @@
                   <ng-template #recentCategoriesView>
                   <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let category of recentCategories">
                   <tr>
-                    <th scope="row">{{ category.id }}</th>
-                    <td>{{ category.name }}</td>
+                    <th scope="row">{{ category.name }}</th>
                     <td>{{ category.description }}</td>
                     <td>
                       <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
