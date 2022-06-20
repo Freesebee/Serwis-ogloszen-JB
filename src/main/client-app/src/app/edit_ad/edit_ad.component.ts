@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import IAd from 'src/app/interfaces/ad';
 import { AdService } from 'src/app/shared/services/ad.service';
+import ICategory from '../interfaces/category';
+import { CategoryService } from '../shared/services/category.service';
 
 @Component({
-    selector: 'app-edit_ad',
-    templateUrl: './edit_ad.component.html',
-    styleUrls: ['./edit_ad.component.scss']
+  selector: 'app-edit_ad',
+  templateUrl: './edit_ad.component.html',
+  styleUrls: ['./edit_ad.component.scss']
 })
 
 export class EditAdComponent implements OnInit {
@@ -15,14 +18,56 @@ export class EditAdComponent implements OnInit {
 
   public adData: IAd;
 
-  constructor(private _adService: AdService, private _route: ActivatedRoute) { }
+  public form: FormGroup;
 
-  ngOnInit(): void {
-      this._route.params.subscribe(params => {
-        this._adService.GetAd(+params['id']).subscribe(ad => { // (+) convert*s string 'id' to a number
+  public categories: ICategory[];
+
+  constructor(private _categoryService: CategoryService, private fb: FormBuilder, private adService: AdService,  private _route: ActivatedRoute, private router: Router) { }
+
+  ngOnInit() {
+    
+
+    this._route.params.subscribe(params => {
+      this.adService.GetAd(+params['id']).subscribe(ad => { // (+) convert*s string 'id' to a number
+
+        this._categoryService.GetCategories().subscribe(categories => {
+          this.categories = categories;
           this.adData = ad;
-        })
-     });
-    }
 
+          this.form = this.fb.group({
+            title: [ad.title, Validators.required],
+            content: [ad.content, Validators.required],
+            categoryId: [ad.categoryByIdCategory.id, Validators.required],
+          });
+        });
+      });
+    });
+
+    this.adService.GetAd
+
+    
+  }
+
+  onSubmit() {
+    console.log(this.form.value) //TODO: Remove
+    if (this.form.valid) {
+      const data: IAd = {
+        title: this.form.get('title').value,
+        content: this.form.get('content').value,
+        categoryByIdCategory: this.categories.find(c => c.id == this.form.get('categoryId').value),
+        city: 'Białystok',
+        street: 'Wiejska',
+        approval: false,
+        accountByIdAccount: undefined,
+        id: 0,
+        createdBy: undefined,
+        createdDate: undefined,
+        modifiedBy: undefined,
+        modifiedDate: undefined
+      }
+      this.adService.UpdateAd(data).subscribe(response => {
+        this.router.navigate(['/ogloszenia/', response.id])
+      })
+    }
+  }
 }

@@ -37,6 +37,6 @@ export class AdDetailsComponent implements OnInit {
   }
 
   onUpdateAd() {
-    this.router.navigate(['/']); //TODO
+    this.router.navigate(['/edit/', this.adData.id])
   }
 }

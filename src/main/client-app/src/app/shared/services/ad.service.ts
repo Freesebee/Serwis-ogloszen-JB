@@ -16,6 +16,10 @@ export class AdService {
     return this._httpClient.get<IAd[]>(API_URL + this._endpoint);
   }
 
+  public GetPendingAds(): Observable<IAd[]> {
+    return this._httpClient.get<IAd[]>(API_URL + this._endpoint + '/pending');
+  }
+
   public GetAd(id: number): Observable<IAd> {
     return this._httpClient.get<IAd>(API_URL + this._endpoint + "/" + id);
   }

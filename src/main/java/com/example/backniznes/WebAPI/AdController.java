@@ -31,8 +31,15 @@ public class AdController {
     @GetMapping("")
     ResponseEntity<Collection<AdEntity>> getAll() {
         Log.info(PersonalDataController.class.toString(),
-                "wszystkie ogłoszenia zostały wysłane");
-        return new ResponseEntity<>(adDao.findAll(), HttpStatus.OK);
+                "wszystkie zatwierdzone ogłoszenia zostały wysłane");
+        return new ResponseEntity<>(adDao.findByApproval(true), HttpStatus.OK);
+    }
+
+    @GetMapping("pending")
+    ResponseEntity<Collection<AdEntity>> getAllPending() {
+        Log.info(PersonalDataController.class.toString(),
+                "wszystkie oczekujące ogłoszenia zostały wysłane");
+        return new ResponseEntity<>(adDao.findByApproval(false), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -106,7 +113,7 @@ public class AdController {
         data.setId(id);
         adDao.save(data);
         Log.info(PersonalDataController.class.toString(),
-                "ogłoszenie o id: " + id + "zostało zaktualiuzowane");
+                "ogłoszenie o id: " + id + " zostało zaktualizowane");
         return new ResponseEntity(data, HttpStatus.OK);
     }
 }

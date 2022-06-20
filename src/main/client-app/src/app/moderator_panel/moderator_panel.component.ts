@@ -20,7 +20,7 @@ export class ModeratorPanelComponent implements OnInit {
 
     ngOnInit() {
         this._adServide
-            .GetAds()
+            .GetPendingAds()
             .pipe(
                 timeout({
                     each: 3000,
