@@ -9,4 +9,5 @@ public interface CategoryDao {
     public CategoryEntity findById(int id);
     public void save(CategoryEntity category);
     public void deleteById(int id);
+    public List<CategoryEntity> findByIsActive(Boolean isActive);
 }

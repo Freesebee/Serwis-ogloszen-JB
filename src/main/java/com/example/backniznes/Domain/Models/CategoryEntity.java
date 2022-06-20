@@ -26,6 +26,10 @@ public class CategoryEntity {
     @OneToMany(mappedBy = "categoryByIdCategory")
     private Collection<AdEntity> adsById;
 
+    @Basic
+    @Column(name = "is_active")
+    private boolean isActive;
+
     @Override
     public String toString() {
         return  "id=" + id +

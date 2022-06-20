@@ -39,4 +39,12 @@ export class CategoryComponent implements OnInit {
                 },
             });
     }
+
+    onDelete(categoryId: number) {
+        this._categoryService.DeleteCategory(categoryId).subscribe(response => {
+            this._categoryService.GetCategories().subscribe(categories => {
+                this.recentCategories = categories;
+            })
+        });
+    }
 }

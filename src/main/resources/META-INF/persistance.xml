@@ -123,4 +123,21 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="com.example.backniznes.CategoryEntity">
+        <table name="category" schema="public" catalog="dalh4kujhg8l3l"/>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <basic name="description">
+                <column name="description"/>
+            </basic>
+            <basic name="isActive">
+                <column name="isActive"/>
+            </basic>
+        </attributes>
+    </entity>
 </entity-mappings>
