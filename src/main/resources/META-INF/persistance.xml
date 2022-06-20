@@ -2,7 +2,7 @@
 <entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
                  version="3.0">
 
-    <entity class="com.example.backniznes.Account.AccountEntity">
+    <entity class="com.example.backniznes.Domain.Models.AccountEntity">
         <table name="account" schema="public" catalog="d1j7icf55e42mi"/>
         <attributes>
             <id name="id">
@@ -20,10 +20,10 @@
             <basic name="role">
                 <column name="role" nullable="false"/>
             </basic>
-            <one-to-many name="adsById" mapped-by="accountByIdAccount" target-entity="com.example.backniznes.Ad.AdEntity"/>
+            <one-to-many name="adsById" mapped-by="accountByIdAccount" target-entity="com.example.backniznes.Domain.Models.AdEntity"/>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.Ad.AdEntity">
+    <entity class="com.example.backniznes.Domain.Models.AdEntity">
         <table name="ad" schema="public" catalog="d1j7icf55e42mi"/>
         <attributes>
             <id name="id">
@@ -38,12 +38,12 @@
             <basic name="idAccount">
                 <column name="id_account" precision="-1"/>
             </basic>
-            <many-to-one name="accountByIdAccount" optional="true" target-entity="com.example.backniznes.Account.AccountEntity">
+            <many-to-one name="accountByIdAccount" optional="true" target-entity="com.example.backniznes.Domain.Models.AccountEntity">
                 <join-column name="id_account" referenced-column-name="id"/>
             </many-to-one>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.PersonalData.PersonalDataEntity">
+    <entity class="com.example.backniznes.Domain.Models.PersonalDataEntity">
         <table name="personal_data" schema="public" catalog="d1j7icf55e42mi"/>
         <attributes>
             <id name="id">
@@ -57,7 +57,7 @@
             </basic>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.Account.AccountEntity">
+    <entity class="com.example.backniznes.Domain.Models.AccountEntity">
         <table name="account" schema="public" catalog="dalh4kujhg8l3l"/>
         <attributes>
             <id name="id">
@@ -80,7 +80,7 @@
             </basic>
         </attributes>
     </entity>
-    <entity class="com.example.backniznes.Category.CategoryEntity">
+    <entity class="com.example.backniznes.Domain.Models.CategoryEntity">
         <table name="category" schema="public" catalog="dalh4kujhg8l3l"/>
         <attributes>
             <id name="id">
