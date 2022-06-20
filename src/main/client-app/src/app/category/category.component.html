@@ -48,7 +48,7 @@
                     <td>{{ category.name }}</td>
                     <td>{{ category.description }}</td>
                     <td>
-                      <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
+                      <a [routerLink]="['/edit-category/', category.id]" href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Edytuj</a>
                       <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Usuń</a>
                     </td>
                   </tr>

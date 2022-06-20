@@ -14,7 +14,6 @@ export class AddCategoryComponent implements OnInit {
   focus1: any;
 
   public form: FormGroup;
-  public recentCategories: ICategory[];
 
   constructor(private _categoryService: CategoryService, private router: Router, private fb: FormBuilder) {}
 

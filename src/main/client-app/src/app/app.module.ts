@@ -25,6 +25,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { AuthService } from './shared/services/auth.service';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     AdDetailsComponent,
     EditAdComponent,
     CategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
