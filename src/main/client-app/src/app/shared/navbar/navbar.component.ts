@@ -2,6 +2,7 @@ import { Location, PopStateEvent } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthGuard } from '../services/auth-guard.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
     selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
     private yScrollStack: number[] = [];
     public isUserLogged = false;
 
-    constructor(public location: Location, private router: Router, private authGuard: AuthGuard) {
+    constructor(public location: Location, private router: Router, private authGuard: AuthGuard, private tokenService: TokenService) {
     }
 
     ngOnInit() {
@@ -48,5 +49,9 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    onSignOut() {
+        this.tokenService.removeToken();
     }
 }
