@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AdDao {
     public List<AdEntity> findAll();
-    public List<AdEntity> findByApproval(boolean approval);
+    public List<AdEntity> findByApproval(Boolean approval);
     public AdEntity findById(int id);
     public void save(AdEntity ad);
     public void deleteById(int id);

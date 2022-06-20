@@ -48,11 +48,11 @@
             <div class="card-body p-lg-5">
               <div *ngIf="pendingAds; then recentAdsView; else loadingAdsView"></div>
               <ng-template #recentAdsView>
-                <div class="table-responsive">
+                <div *ngIf="pendingAds.length > 0" class="table-responsive">
                   <table class="table table-bordered border-4">
                     <thead class="table-dark">
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Autor</th>
                         <th scope="col">Tytuł</th>
                         <th scope="col">Treść</th>
                         <th scope="col">Kategoria</th>
@@ -61,22 +61,23 @@
                     </thead>
                     <tbody class="table-hover" [ngClass]="{ 'col-lg-4': true }" *ngFor="let ad of pendingAds">
                       <tr>
-                        <th scope="row">{{ ad.id }}</th>
+                        <th scope="row">{{ ad.accountByIdAccount.nickname }}</th>
                         <td>{{ ad.title }}</td>
                         <td>{{ ad.content }}</td>
                         <td *ngIf="ad.categoryByIdCategory.name">
-                          <span class="badge badge-pill badge-success">{{
-                            ad.categoryByIdCategory.name
-                            }}</span>
+                          {{ ad.categoryByIdCategory.name }}
                         </td>
                         <td>
-                          <a [routerLink]="['ad.id']" class="btn btn-sm btn-primary mr-4">Przejdź</a>
-                          <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
-                          <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4">Usuń</a>
+                          <a [routerLink]="['/ogloszenia/', ad.id]" class="btn btn-sm btn-primary mr-4">Przejdź</a>
+                          <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4" (click)="onApprove(ad.id)">Zatwierdź</a>
+                          <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4" (click)="onDisapprove(ad.id)">Odrzuć</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div *ngIf="pendingAds.length == 0">
+                  <h3>Brak oczekujących ogłoszeń</h3>
                 </div>
               </ng-template>
               <ng-template #loadingAdsView>

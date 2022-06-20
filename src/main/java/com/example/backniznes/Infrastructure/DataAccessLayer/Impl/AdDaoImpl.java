@@ -19,7 +19,7 @@ public class AdDaoImpl implements AdDao {
     }
 
     @Override
-    public List<AdEntity> findByApproval(boolean approval) {
+    public List<AdEntity> findByApproval(Boolean approval) {
         return repository.findByApproval(approval).orElseThrow();
     }
 

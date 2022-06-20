@@ -34,6 +34,10 @@ public class AdEntity {
     @JoinColumn(name = "id_category", referencedColumnName = "id", nullable = true)
     private CategoryEntity categoryByIdCategory;
 
+    @Basic
+    @Column(name = "approval", nullable = true)
+    private Boolean approval;
+
     public AdEntity() {
     }
 

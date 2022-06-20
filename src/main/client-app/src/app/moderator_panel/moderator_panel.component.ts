@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {take, throwError, timeout} from "rxjs";
+import { take, throwError, timeout } from "rxjs";
 import IAd from "../interfaces/ad";
-import {AdService} from "../shared/services/ad.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { AdService } from "../shared/services/ad.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'app-moderator_panel',
@@ -16,7 +16,7 @@ export class ModeratorPanelComponent implements OnInit {
 
     public pendingAds: IAd[];
 
-    constructor(private _adServide: AdService, private _router: Router) {}
+    constructor(private _adServide: AdService, private _router: Router) { }
 
     ngOnInit() {
         this._adServide
@@ -37,5 +37,23 @@ export class ModeratorPanelComponent implements OnInit {
             });
     }
 
+    public onApprove(adId: number) {
+        this._adServide.ReviewAd(adId, true).subscribe((response) => {
+            this.pendingAds = undefined;
 
+            this._adServide.GetPendingAds().subscribe(ads => {
+                this.pendingAds = ads;
+            })
+        });
+    }
+
+    public onDisapprove(adId: number) {
+        this._adServide.ReviewAd(adId, false).subscribe((response) => {
+            this.pendingAds = undefined;
+
+            this._adServide.GetPendingAds().subscribe(ads => {
+                this.pendingAds = ads;
+            })
+        });
+    }
 }

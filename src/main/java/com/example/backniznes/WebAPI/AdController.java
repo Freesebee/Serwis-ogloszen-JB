@@ -39,7 +39,7 @@ public class AdController {
     ResponseEntity<Collection<AdEntity>> getAllPending() {
         Log.info(PersonalDataController.class.toString(),
                 "wszystkie oczekujące ogłoszenia zostały wysłane");
-        return new ResponseEntity<>(adDao.findByApproval(false), HttpStatus.OK);
+        return new ResponseEntity<>(adDao.findByApproval(null), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -115,5 +115,30 @@ public class AdController {
         Log.info(PersonalDataController.class.toString(),
                 "ogłoszenie o id: " + id + " zostało zaktualizowane");
         return new ResponseEntity(data, HttpStatus.OK);
+    }
+
+    @PostMapping("/approve/{id}")
+    ResponseEntity<AdEntity> add(@PathVariable int id, @RequestBody boolean isApproved) {
+        try {
+            AdEntity found = adDao.findById(id);
+
+            if (found.getApproval() == null) {
+                found.setApproval(isApproved);
+                adDao.save(found);
+
+                Log.info(PersonalDataController.class.toString(), "ogłoszenie o id: " + id + " zostało zaakceptowane");
+
+                return new ResponseEntity<>(found, HttpStatus.OK);
+            }
+
+            Log.info(PersonalDataController.class.toString(), "ogłoszenie o id: " + id + " już zostało ocenione");
+
+            return new ResponseEntity<>(found, HttpStatus.CONFLICT);
+        }
+        catch (NoSuchElementException e) {
+            Log.warn(PersonalDataController.class.toString(), "Nie ma elementu z takim id");
+
+            return new ResponseEntity("Nie ma elementu z takim id", HttpStatus.NOT_FOUND);
+        }
     }
 }

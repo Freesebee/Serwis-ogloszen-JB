@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AdRepository extends JpaRepository<AdEntity,Integer> {
-    public Optional<List<AdEntity>> findByApproval(boolean approval);
+    public Optional<List<AdEntity>> findByApproval(Boolean approval);
 }
