@@ -6,6 +6,8 @@ import com.example.backniznes.Infrastructure.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -23,10 +25,27 @@ public class AccountController {
         this.dao = dao;
     }
 
+    @GetMapping("current")
+    ResponseEntity<AccountEntity> getCurrentAccount() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        Log.info(AccountController.class.toString(),
+                "konto zalogowanego użytkownika zostało wysłane");
+
+        return new ResponseEntity<>(dao.findByLogin(username), HttpStatus.OK);
+    }
+
     @GetMapping("")
     ResponseEntity<Collection<AccountEntity>> getAll() {
         Log.info(AccountController.class.toString(),
-                "wszystkie użytkownicy zostały wysłane");
+                "konta użytkowników zostały wysłane");
         return new ResponseEntity<>(dao.findAll(), HttpStatus.OK);
     }
 
@@ -35,7 +54,7 @@ public class AccountController {
         try {
             AccountEntity found = dao.findById(id);
             Log.info(AccountController.class.toString(),
-                    "użytkownik o id: " + id + "zostało wysłane");
+                    "konto użytkownika o id: " + id + "zostało wysłane");
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             Log.warn(PersonalDataController.class.toString(),
@@ -51,7 +70,7 @@ public class AccountController {
         if (! dao.findAll().contains(data)) {
             dao.save(data);
             Log.info(AccountController.class.toString(),
-                    "użytkownik o id: " + data + "został dodany");
+                    "żytkownik o id: " + data + "został dodany");
             return new ResponseEntity<>(data, HttpStatus.CREATED);
         }
         Log.warn(PersonalDataController.class.toString(),
