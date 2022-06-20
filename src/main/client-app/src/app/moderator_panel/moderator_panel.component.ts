@@ -37,5 +37,9 @@ export class ModeratorPanelComponent implements OnInit {
             });
     }
 
+    approve(ad  : IAd){
+        ad.approval = true
+        this._adServide.UpdateAd(ad).subscribe()
 
+    }
 }

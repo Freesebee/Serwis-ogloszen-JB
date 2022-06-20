@@ -31,6 +31,7 @@
           </div>
         </div>
       </div>
+      <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
           xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +72,7 @@
                         </td>
                         <td>
                           <a [routerLink]="['ad.id']" class="btn btn-sm btn-primary mr-4">Przejdź</a>
-                          <a href="javascript:void(0)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
+                          <a (click)="this.approve(ad)" class="btn btn-sm btn-warning mr-4">Zatwierdź</a>
                           <a href="javascript:void(0)" class="btn btn-sm btn-danger mr-4">Usuń</a>
                         </td>
                       </tr>

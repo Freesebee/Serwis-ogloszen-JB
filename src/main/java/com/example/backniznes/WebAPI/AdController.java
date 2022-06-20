@@ -48,6 +48,7 @@ public class AdController {
         if (data.getId() != 0)
             data.setId(0);
         if (!dao.findAll().contains(data)) {
+            data.setApproval(false);
             dao.save(data);
             Log.info(PersonalDataController.class.toString(),
                     "ogłoszenie o nazwie: " + data.getTitle() + "zostały zapisane");

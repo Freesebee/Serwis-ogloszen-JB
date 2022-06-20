@@ -1,7 +1,7 @@
 package com.example.backniznes.Infrastructure.Services;
 
-import com.example.backniznes.Account.AccountDaoImpl;
-import com.example.backniznes.Account.AccountEntity;
+import com.example.backniznes.Domain.Models.AccountEntity;
+import com.example.backniznes.Infrastructure.DataAccessLayer.Impl.AccountDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

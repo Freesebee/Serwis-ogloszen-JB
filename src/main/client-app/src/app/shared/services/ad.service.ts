@@ -29,10 +29,9 @@ export class AdService {
   }
 
   public UpdateAd(data: IAd): Observable<IAd> {
-    return this._httpClient.put<IAd>(
-      API_URL + this._endpoint + "/" + data.id,
-      data
-    );
+    console.log(API_URL + this._endpoint + "/" + data.id)
+    console.log(data)
+    return this._httpClient.put<IAd>(API_URL + this._endpoint + "/" + data.id, data);
   }
 
   public DeleteAd(id: number): Observable<void> {
