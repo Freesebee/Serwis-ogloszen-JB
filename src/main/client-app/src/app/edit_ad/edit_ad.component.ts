@@ -56,6 +56,7 @@ export class EditAdComponent implements OnInit {
       this.adData.title = this.form.get('title').value;
       this.adData.categoryByIdCategory = this.categories.find(c => c.id == this.form.get('categoryId').value);
       this.adData.content = this.form.get('content').value;
+      this.adData.approval = undefined;
 
       this.adService.UpdateAd(this.adData).subscribe(response => {
         this.router.navigate(['/ogloszenia/', response.id])
