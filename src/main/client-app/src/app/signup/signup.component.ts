@@ -41,12 +41,20 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         if (this.form.valid) {
-            const data: IAccount = {
+            const dataAcc: IAccount = {
                 login: this.form.get('login').value,
                 password: this.form.get('password').value,
                 email: this.form.get('email').value,
                 nickname: this.form.get('nickname').value,
                 role: 'user',
+                id: 0,
+                createdBy: undefined,
+                createdDate: undefined,
+                modifiedBy: undefined,
+                modifiedDate: undefined
+            }
+
+            const dataPer: IPersonalData = {
                 name: this.form.get('name').value,
                 surname: this.form.get('surname').value,
                 city: this.form.get('city').value,
@@ -57,8 +65,8 @@ export class SignupComponent implements OnInit {
                 modifiedBy: undefined,
                 modifiedDate: undefined
             }
-            this._personalDataService.CreatePersonalData(data).subscribe()
-            this._accountService.CreateAccount(data).subscribe(response => {
+            this._personalDataService.CreatePersonalData(dataPer).subscribe()
+            this._accountService.CreateAccount(dataAcc).subscribe(response => {
                 this.router.navigate(['/login/', response])
             })
         }
