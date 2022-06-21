@@ -11,6 +11,7 @@ Temat projektu: Serwis ogłoszeń
 
 Wymagania:
 - wersja Java: 11(LTS)
+- Serwer bazodanowy: nie dotyczy(baza na heroku)
 - NodeJS
 
 Lista funkcjonalności:
@@ -30,4 +31,4 @@ Należy zainstalować niezbędne pakiety poprzez użycie komendy 'npm ci', a nas
 uruchomić aplikację poprzez 'npm run start'.
 
 - WebAPI (Spring Boot):
-Projekt należy skompilować i uruchomić 
+Projekt należy skompilować i uruchomić
