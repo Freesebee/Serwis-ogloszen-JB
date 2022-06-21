@@ -5,6 +5,7 @@ import com.example.backniznes.Infrastructure.DataAccessLayer.Impl.AccountDaoImpl
 import com.example.backniznes.Infrastructure.DataAccessLayer.Impl.AdDaoImpl;
 import com.example.backniznes.Domain.Models.AdEntity;
 import com.example.backniznes.Infrastructure.Log;
+import com.example.backniznes.Infrastructure.Services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,13 @@ import java.util.NoSuchElementException;
 public class AdController {
     AdDaoImpl adDao;
     AccountDaoImpl accountDao;
+    EmailService emailService;
 
     @Autowired
-    public AdController(AdDaoImpl dao, AccountDaoImpl accountDao) {
+    public AdController(AdDaoImpl dao, AccountDaoImpl accountDao, EmailService emailService) {
         this.adDao = dao;
         this.accountDao = accountDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("")
@@ -125,7 +128,7 @@ public class AdController {
             if (found.getApproval() == null) {
                 found.setApproval(isApproved);
                 adDao.save(found);
-
+                emailService.sendMail(found.getAccountByIdAccount().getEmail());
                 Log.info(PersonalDataController.class.toString(), "ogłoszenie o id: " + id + " zostało zaakceptowane");
 
                 return new ResponseEntity<>(found, HttpStatus.OK);
