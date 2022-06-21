@@ -42,7 +42,7 @@ export class AddAdComponent implements OnInit {
         categoryByIdCategory: this.categories.find(c => c.id == this.form.get('categoryId').value),
         city: 'Białystok',
         street: 'Wiejska',
-        approval: false,
+        approval: undefined,
         accountByIdAccount: undefined,
         id: 0,
         createdBy: undefined,

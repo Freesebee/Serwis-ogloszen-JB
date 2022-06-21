@@ -17,7 +17,8 @@
         </div>
       </div>
       <div class="separator separator-bottom separator-skew">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
@@ -29,21 +30,41 @@
         <div class="col-lg-8">
           <div class="card bg-gradient-secondary shadow">
             <div class="card-body p-lg-5">
-              <h2 class="mb-1">Edytuj ogłoszenie</h2>
-              <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+              <div *ngIf="adData; then adView; else loadingAdView"></div>
+              <ng-template #adView>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <h2 class="mb-1">Edytuj ogłoszenie</h2>
+                  <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-notification-70"></i></span>
+                      </div>
+                      <input class="form-control" formControlName="title" placeholder="Temat" type="text"
+                        (focus)="focus=true" (blur)="focus=false">
+                    </div>
                   </div>
-                  <input class="form-control" placeholder="Temat" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-              </div>
-              <div class="form-group mb-4">
-                <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80" placeholder="Treść ogłoszenia"></textarea>
-              </div>
-              <div>
-                <button type="button" class="btn btn-default btn-round btn-block btn-lg">Zapisz</button>
-              </div>
+                  <div class="form-group mb-4">
+                    <textarea class="form-control form-control-alternative" formControlName="content" name="name"
+                      rows="4" cols="80" placeholder="Treść ogłoszenia"></textarea>
+                  </div>
+                  <div class="form-group mb-4">
+                    <div id="selectpicker-single-component" class="tab-pane tab-example-result fade show active"
+                      role="tabpanel" aria-labelledby="selectpicker-single-component-tab">
+                      <select class="form-control" formControlName="categoryId" data-trigger=""
+                        name="choices-single-default" id="choices-single-default">
+                        <option disabled="" selected="">Kategoria</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Wystaw</button>
+                  </div>
+                </form>
+              </ng-template>
+              <ng-template #loadingAdView>
+                <app-loading-spinner></app-loading-spinner>
+              </ng-template>
             </div>
           </div>
         </div>

@@ -32,4 +32,9 @@ public class CategoryDaoImpl implements CategoryDao {
     public void deleteById(int id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<CategoryEntity> findByIsActive(Boolean isActive) {
+        return repository.findAllByIsActive(isActive);
+    }
 }

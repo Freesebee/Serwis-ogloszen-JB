@@ -24,9 +24,9 @@ public class CategoryController {
 
     @GetMapping("")
     ResponseEntity<Collection<CategoryEntity>> getAll() {
-        Log.info(CategoryController.class.toString(),
-                "wszystkie categorie zostały wysłane");
-        return new ResponseEntity<>(dao.findAll(), HttpStatus.OK);
+        Log.info(CategoryController.class.toString(), "wszystkie kategorie zostały wysłane");
+
+        return new ResponseEntity<>(dao.findByIsActive(true), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -34,7 +34,7 @@ public class CategoryController {
         try {
             CategoryEntity found = dao.findById(id);
             Log.info(CategoryController.class.toString(),
-                    "categoria o id: " + id + "została wysłana");
+                    "kategorie o id: " + id + " została wysłana");
             return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             Log.warn(CategoryController.class.toString(),
@@ -47,14 +47,18 @@ public class CategoryController {
     ResponseEntity<CategoryEntity> add(@RequestBody CategoryEntity data) {
         if (data.getId() != 0)
             data.setId(0);
+
         if (!dao.findAll().contains(data)) {
+            data.setActive(true);
             dao.save(data);
-            Log.info(CategoryController.class.toString(),
-                    "dcategoria : " + data + "zostały wysłane");
+
+            Log.info(CategoryController.class.toString(), "kategorie : " + data + " zostały wysłane");
+
             return new ResponseEntity<>(data, HttpStatus.CREATED);
         }
-        Log.warn(CategoryController.class.toString(),
-                "Już istnieje taki element");
+
+        Log.warn(CategoryController.class.toString(), "Już istnieje taki element");
+
         return new ResponseEntity("Już istnieje taki element", HttpStatus.CONFLICT);
     }
 
@@ -62,13 +66,17 @@ public class CategoryController {
     ResponseEntity<CategoryEntity> delete(@PathVariable int id) {
         try {
             CategoryEntity found = dao.findById(id);
-            dao.deleteById(id);
-            Log.info(CategoryController.class.toString(),
-                    "usunięto dane osobowe o id: " + id);
+
+            found.setActive(false);
+            dao.save(found);
+
+            Log.info(CategoryController.class.toString(), "usunięto dane osobowe o id: " + id);
+
             return new ResponseEntity<>(found, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            Log.warn(CategoryController.class.toString(),
-                    "Już istnieje taki element");
+        }
+        catch (NoSuchElementException e) {
+            Log.warn(CategoryController.class.toString(), "Już istnieje taki element");
+
             return new ResponseEntity("Nie ma elementu z takim id", HttpStatus.NOT_FOUND);
         }
     }

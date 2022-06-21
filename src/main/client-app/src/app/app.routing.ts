@@ -16,6 +16,7 @@ import { AuthGuard } from './shared/services/auth-guard.service';
 import { AuthService } from './shared/services/auth.service';
 import { SignupComponent } from './signup/signup.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'moderator-panel', component: ModeratorPanelComponent, canActivate: [AuthGuard] },
   { path: 'kategorie', component: CategoryComponent },
   { path: 'add-category', component: AddCategoryComponent },
+  { path: 'edit-category/:id', component: EditCategoryComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

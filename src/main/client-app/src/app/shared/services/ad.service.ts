@@ -16,6 +16,10 @@ export class AdService {
     return this._httpClient.get<IAd[]>(API_URL + this._endpoint);
   }
 
+  public GetPendingAds(): Observable<IAd[]> {
+    return this._httpClient.get<IAd[]>(API_URL + this._endpoint + '/pending');
+  }
+
   public GetAd(id: number): Observable<IAd> {
     return this._httpClient.get<IAd>(API_URL + this._endpoint + "/" + id);
   }
@@ -24,8 +28,8 @@ export class AdService {
     return this._httpClient.post<IAd>(API_URL + this._endpoint, data);
   }
 
-  public ReviewAd(isApproved: boolean): Observable<void> {
-    return this._httpClient.post<void>(API_URL + this._endpoint, isApproved);
+  public ReviewAd(adId: number, isApproved: boolean): Observable<void> {
+    return this._httpClient.post<void>(API_URL + this._endpoint + '/approve/' + adId, isApproved);
   }
 
   public UpdateAd(data: IAd): Observable<IAd> {
